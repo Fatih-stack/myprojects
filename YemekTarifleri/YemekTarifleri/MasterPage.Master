@@ -1,0 +1,80 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="Kullanici.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+            height: 40px;
+        }
+
+        .auto-style2 {
+            text-align: center;
+            font-weight: bold;
+            background-color: #eea4a4;
+        }
+
+        .auto-style3 {
+            text-align: left;
+        }
+
+        .auto-style4 {
+            font-size: large;
+        }
+
+        .newStyle1 {
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="width: 700px; height: 150px; margin-left: 300px; background-color: #ce7171;">
+            <asp:Image ID="Image1" runat="server" Height="156px" ImageUrl="~/header/images.jpg" Width="698px" />
+        </div>
+        <div style="margin-left: 300px; width: 700px; height: 20px;">&nbsp;</div>
+        <div style="margin-left: 300px; width: 700px; height: 40px; background-color: #fff;">
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style2"><a href="Anasayfa.aspx">ANA SAYFA</a></td>
+                    <td class="auto-style2"><a href="GununYemegi.aspx">GÜNÜN YEMEĞİ</a></td>
+                    <td class="auto-style2"><a href="TarifOner.aspx">TARİF ÖNER</a></td>
+                    <td class="auto-style2"><a href="Hakkimizda.aspx">HAKKIMIZDA</a></td>
+                    <td class="auto-style2"><a href="İletisim.aspx">İLETİŞİM</a></td>
+                </tr>
+            </table>
+        </div>
+        <div style="margin-left: 300px; width: 700px; height: 20px;" >&nbsp;</div>
+        <div style="margin-left: 300px; width: 700px; height: 300px;">
+
+            <div style="width: 200px; float:left; height: auto; background-color:#ce7171; margin-left:0px;">
+                <div class="auto-style3">
+                    <strong><span class="auto-style4">KATEGORİLER</span></strong><br />
+                    <br />
+                </div>
+                <asp:DataList ID="DataList" runat="server" DataSourceID="SqlDataSource2" DataKeyField="Kategoriid" Width="196px">
+                    <ItemTemplate>
+                        <div style="border: thin solid #CCCCCC">
+                        &nbsp;<a href ="KategoriDetay.aspx?Kategoriid=<%#Eval("Kategoriid") %>">
+                            <asp:Label ID="AdLabel" runat="server" Text='<%#Eval("KategoriAd") %>'></asp:Label></a>
+                        &nbsp;(
+                        <asp:Label ID="AdetLabel" runat="server" Text='<%#Eval("KategoriAdet") %>' />
+                        )</div>
+                    </ItemTemplate>
+                </asp:DataList>
+            </div>
+            <div style="width: 450px; float:left; height: auto; background-color:#ce7171; margin-left:50px;">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Dbo_yemektarifiConnectionString2 %>" SelectCommand="SELECT * FROM [Tbl_Kategoriler]"></asp:SqlDataSource>
+    </form>
+</body>
+</html>
